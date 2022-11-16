@@ -4,49 +4,49 @@ package machine;
 import java.util.Scanner;
 import static java.lang.Math.min;
 public class RobienieKawy {
-    Maszyna maszyna = new Maszyna();
+    Maszyna maszyna = new Maszyna(); // Tworzenie obiektu maszyny
     static Scanner scanner = new Scanner(System.in);
      void obsluga() {
 
         boolean petla = true;
         while (petla) {
             String zapytaj = zapytaj();
-            switch (zapytaj) {
-                case "buy":
-                    System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu");
+            switch (zapytaj) {  // Opcje użytkownika do wyboru
+                case "kup": 
+                    System.out.println("Co chcesz kupić? 1 - espresso, 2 - latte, 3 - cappuccino, cofnij - do menu");
 
                     String rodzaj = scanner.next();
-                    switch (rodzaj) {
+                    switch (rodzaj) {   // Opcje kupna kawy
                         case "1":
                             if (maszyna.getWoda() < 250) {
-                             System.out.println("Sorry, not enough water!");
+                             System.out.println("Wybacz, nie ma wystarczającej ilości wody!");
                             }
                             else if (maszyna.getNasionaKawy() < 16) {
-                                System.out.println("Sorry, not enough coffe beans!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości nasion kawy!");
                             }
                             else if (maszyna.getKubki() < 1) {
-                                System.out.println("Sorry! not enough disposable cups!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości kubków!");
                             }
                             else {
                                 maszyna.setWoda(maszyna.getWoda() - 250);
                                 maszyna.setNasionaKawy(maszyna.getNasionaKawy() - 16);
                                 maszyna.setPieniadze(maszyna.getPieniadze() + 4);
                                 maszyna.setKubki(maszyna.getKubki() - 1);
-                                System.out.println("I have enough resources, making you a coffe!");
+                                System.out.println("Rozpoczynam robienie kawy!");
                             }
                             break;
                         case "2":
                             if (maszyna.getWoda() < 350) {
-                                System.out.println("Sorry, not enough water!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości wody!");
                             }
                             else if (maszyna.getNasionaKawy() < 26) {
-                                System.out.println("Sorry, not enough coffe beans!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości nasion kawy!");
                             }
                             else if (maszyna.getKubki() < 1) {
-                                System.out.println("Sorry! not enough disposable cups!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości kubków!");
                             }
                             else if (maszyna.getMleko() < 75) {
-                                System.out.println("Sorry! not enough milk!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości mleka!");
                             }
                             else {
                                 maszyna.setWoda(maszyna.getWoda() - 350);
@@ -54,21 +54,21 @@ public class RobienieKawy {
                                 maszyna.setNasionaKawy(maszyna.getNasionaKawy() - 20);
                                 maszyna.setPieniadze(maszyna.getPieniadze() + 7);
                                 maszyna.setKubki(maszyna.getKubki() - 1);
-                                System.out.println("I have enough resources, making you a coffe!");
+                                System.out.println("Rozpoczynam robienie kawy!");
                             }
                             break;
                         case "3":
                             if (maszyna.getWoda() < 200) {
-                                System.out.println("Sorry, not enough water!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości wody!");
                             }
                             else if (maszyna.getNasionaKawy() < 12) {
-                                System.out.println("Sorry, not enough coffe beans!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości nasion kawy!");
                             }
                             else if (maszyna.getKubki() < 1) {
-                                System.out.println("Sorry! not enough disposable cups!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości kubków!");
                             }
                             else if (maszyna.getMleko() < 100) {
-                                System.out.println("Sorry! not enough milk!");
+                                System.out.println("Wybacz, nie ma wystarczającej ilości mleka!");
                             }
                             else {
                                 maszyna.setWoda(maszyna.getWoda() - 200);
@@ -76,28 +76,28 @@ public class RobienieKawy {
                                 maszyna.setNasionaKawy(maszyna.getNasionaKawy() - 12);
                                 maszyna.setPieniadze(maszyna.getPieniadze() + 6);
                                 maszyna.setKubki(maszyna.getKubki() - 1);
-                                System.out.println("I have enough resources, making you a coffe!");
+                                System.out.println("Rozpoczynam robienie kawy!");
                             }
                             break;
-                        case "back":
+                        case "cofnij":
                             break;
                     }
                     break;
-                case "fill":
+                case "uzupełnij":
                     maszyna.setWoda(maszyna.getWoda() + wodaMaszyny());
                     maszyna.setMleko(maszyna.getMleko() + mlekoMaszyny());
                     maszyna.setNasionaKawy(maszyna.getNasionaKawy() + nasionaMaszyny());
                     maszyna.setKubki(maszyna.getKubki() + kubkiMaszyna());
                     break;
-                case "take":
-                    System.out.println("I gave you $" + maszyna.getPieniadze());
+                case "wyjmijPieniadze":
+                    System.out.println("Wypłacam: " + maszyna.getPieniadze() + "zł");
                     maszyna.setPieniadze(0);
                     System.out.println();
                     break;
-                case "exit":
+                case "wyjdź":
                     petla = false;
                     break;
-                case "remaining":
+                case "zawartość":
                     wyswietlZawartosc();
                     break;
                 default:
@@ -106,59 +106,30 @@ public class RobienieKawy {
         }
     }
     String zapytaj() {
-        System.out.println("Write action (buy, fill, take, remaining, exit): ");
+        System.out.println("Wybierz opcje (kup, uzupełnij, wyjmijPieniadze, zawartość, wyjdź): ");
         return scanner.next();
     }
     void wyswietlZawartosc() {
-        System.out.println(maszyna.getWoda() + " ml of water");
-        System.out.println(maszyna.getMleko() + " ml of milk");
-        System.out.println(maszyna.getNasionaKawy() + " g of coffee beans");
-        System.out.println(maszyna.getKubki() + " disposable cups");
-        System.out.println("$" + maszyna.getPieniadze() + " of money");
-    }
-    int kubki() {
-        System.out.println("Write how many cups of coffe you will need:");
-            return scanner.nextInt();
+        System.out.println("Aktualna zawartość: " + maszyna.getWoda() + " ml wody");
+        System.out.println("Aktualna zawartość: " + maszyna.getMleko() + " ml mleka");
+        System.out.println("Aktualna zawartość: " + maszyna.getNasionaKawy() + " g nasion kawy");
+        System.out.println("Aktualna zawartość: " + maszyna.getKubki() + " kubków");
+        System.out.println("Aktualna zawartość: " + maszyna.getPieniadze() + "zł");
     }
     int wodaMaszyny() {
-        System.out.println("Write how many ml of water you want to add:");
+        System.out.println("Napisz ile ml wody chcesz dolać:");
         return scanner.nextInt();
     }
     int mlekoMaszyny() {
-        System.out.println("Write how many ml of milk you want to add:");
+        System.out.println("Napisz ile ml mleka chcesz dolać:");
         return scanner.nextInt();
     }
     int nasionaMaszyny() {
-            System.out.println("Write how many grams of coffee beans you want to add:");
+            System.out.println("Napisz ile nasion kawy chcesz dodać:");
             return scanner.nextInt();
     }
-    int iloscKawyMaszyna() {
-        int ile = min(wodaMaszyny() / 200, mlekoMaszyny() / 50);
-        return min(ile, nasionaMaszyny() / 15);
-    }
     int kubkiMaszyna() {
-        System.out.println("Write how many disposable cups you want to add:");
+        System.out.println("napisz ile kubków chcesz dodac:");
         return scanner.nextInt();
     }
-    int iloscKawyKlient() {
-        Kawa Kawka = new Kawa(kubki());
-            int ile = min(Kawka.getWoda() / 200, Kawka.getMleko() / 50);
-            return min(ile, Kawka.getNasionakawy() / 15);
-    }
-    void robienieKawy() {
-            int kawaMaszyny = iloscKawyMaszyna();
-            int kawaKlient = iloscKawyKlient();
-
-            if (kawaMaszyny == kawaKlient) {
-                System.out.println("Yes, I can make that amount of coffee");
-            }
-            if (kawaMaszyny > kawaKlient) {
-                int reszta = kawaMaszyny - kawaKlient;
-                System.out.println("Yes, I can make that amount of coffee (and even " + reszta + " more than that)");
-            }
-            if (kawaMaszyny < kawaKlient) {
-                System.out.println("No, I can make only " + kawaMaszyny + " cup(s) of coffee");
-            }
-    }
-
 }
