@@ -1,21 +1,21 @@
 package machine;
 
 public class Maszyna {
-    int woda;
+    int woda; 
     int mleko;
-    int nasionaKawy;
+    int nasionaKawy;      // instancje
     int kubki;
     int pieniadze;
 
     public Maszyna() {
         this.woda = 400;
         this.mleko = 540;
-        this.nasionaKawy = 120;
+        this.nasionaKawy = 120;    // konstruktor
         this.kubki = 9;
         this.pieniadze = 550;
     }
 
-    public void setWoda(int woda) {
+    public void setWoda(int woda) {  // settery
         this.woda = woda;
     }
 
@@ -35,7 +35,7 @@ public class Maszyna {
         this.pieniadze = pieniadze;
     }
 
-    public int getWoda() {
+    public int getWoda() {   // gettery
         return woda;
     }
 
