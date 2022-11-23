@@ -1,4 +1,5 @@
 # AutomatzKawa
+JetBrains Academy project
 
 Jest to program który obsługuje automat z kawą, używający tej maszyny ma do wyboru kilka opcji:
 
